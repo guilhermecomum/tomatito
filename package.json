@@ -7,7 +7,7 @@
     "start": "webpack-dev-server"
   },
   "author": "Guilherme Guerra",
-  "license": "MIT",
+  "license": "GPLv3",
   "devDependencies": {
     "babel-core": "^6.9.1",
     "babel-loader": "^6.2.4",
