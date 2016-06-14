@@ -1,31 +1,29 @@
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: __dirname + '/app/index.html',
+  filename: 'index.html',
+  inject: 'body'
+});
 module.exports = {
-  context: __dirname + "/app",
-  entry: {
-    javascript: "./app.js",
-    html: "./index.html"
-  },
+  entry: [
+    './app/app.js'
+  ],
   output: {
-    filename: 'app.js',
-    path: __dirname + "/dist"
+    path: __dirname + '/dist',
+    filename: "index_awesome.js"
   },
   module: {
     loaders: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015']
-        }
-      },
-      {
-        test: /\.html$/,
-        loader: "file?name=[name].[ext]"
+        include: __dirname + '/app',
+        loader: "babel-loader"
       },
       {
         test: /\.css$/,
         loader: "style-loader!css-loader"
       }
     ]
-  }
+  },
+  plugins: [HTMLWebpackPluginConfig]
 };
