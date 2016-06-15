@@ -25,9 +25,9 @@ module.exports = {
         loader: "babel-loader"
       },
       {
-        test: /\.css$/,
-        loader: "style-loader!css-loader"
-      }
+        test: /\.sass/,
+        loader: "style!css!sass?sourceMap"
+      },
     ]
   },
   plugins: [HTMLWebpackPluginConfig]
