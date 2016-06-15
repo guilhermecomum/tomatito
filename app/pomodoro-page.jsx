@@ -8,13 +8,14 @@ export default class TomatoBox extends React.Component {
     this.state = {
       isPlaying: false,
       time: (14 * 60 * 1000) + (24 * 1000),
-      msg: "Time to work!"
+      msg: "Are you ready?"
     }
   }
 
   handleStart() {
     this.setState({
-      isPlaying: !this.state.isPlaying
+      isPlaying: !this.state.isPlaying,
+      msg: "Let's dance!"
     });
     console.log("Clicked! " + this.state.isPlaying);
   }
@@ -23,7 +24,7 @@ export default class TomatoBox extends React.Component {
     this.setState({
       time: (14 * 60 * 1000) + (24 * 1000),
       isPlaying: false,
-      msg: "Time to work!"
+      msg: "Are you ready?"
     });
   }
 
@@ -35,12 +36,6 @@ export default class TomatoBox extends React.Component {
         });
       }
     }, 1000);
-  }
-
-  timeOver() {
-    this.setState({
-      time: this.getMaxTime(!this.state.isBreak),
-    });
   }
 
   componentDidUpdate() {
@@ -65,8 +60,8 @@ export default class TomatoBox extends React.Component {
           <p>{this.state.msg}</p>
         </div>
         <Tomato time={this.state.time} />
-        <button onClick={this.handleStart}>Start</button>
-        <button onClick={this.handleReset}>Stop</button>
+        <button onClick={this.handleStart.bind(this)}>Start</button>
+        <button onClick={this.handleReset.bind(this)}>Stop</button>
       </div>
     );
   }

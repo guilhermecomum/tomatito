@@ -1,11 +1,11 @@
 import React from 'react'
 
 export default class Tomato extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       time: (14 * 60 * 1000) + (24 * 1000),
-      msg: "Time to work!"
+      msg: "Are you ready?"
     };
   }
 
@@ -16,7 +16,7 @@ export default class Tomato extends React.Component {
   }
 
   getTime() {
-    let ms = this.state.time,
+    let ms = this.props.time,
         min = (ms/1000/60) << 0,
         sec = (ms/1000) % 60;
     return this.zfill(min, 2) + ":" + this.zfill(sec, 2)
@@ -25,7 +25,7 @@ export default class Tomato extends React.Component {
   render() {
     return (
       <div>
-        <div className="tomato">
+        <div className="time">
           {this.getTime()}
         </div>
       </div>
