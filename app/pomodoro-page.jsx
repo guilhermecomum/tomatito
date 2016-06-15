@@ -2,6 +2,9 @@ import React from 'react'
 
 import Tomato from './pomodoro';
 
+import RaisedButton from 'material-ui/RaisedButton';
+
+
 export default class TomatoBox extends React.Component {
   constructor() {
     super();
@@ -57,11 +60,11 @@ export default class TomatoBox extends React.Component {
     return (
       <div className="TomatoBox">
         <div id="osd">
-          <p>{this.state.msg}</p>
+          {this.state.msg}
         </div>
         <Tomato time={this.state.time} />
-        <button onClick={this.handleStart.bind(this)}>Start</button>
-        <button onClick={this.handleReset.bind(this)}>Stop</button>
+        <RaisedButton label="Start" primary={true} onClick={this.handleStart.bind(this)} />
+        <RaisedButton label="Reset" onClick={this.handleReset.bind(this)} />
       </div>
     );
   }
