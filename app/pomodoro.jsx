@@ -1,11 +1,18 @@
 import React from 'react'
 
-export class Tomato extends React.Component {
-  getDefaultProps() {
-    return {
+export default class Tomato extends React.Component {
+  constructor() {
+    super();
+    this.state = {
       time: (14 * 60 * 1000) + (24 * 1000),
       msg: "Time to work!"
     };
+  }
+
+  zfill(number, size) {
+    number = number.toString();
+    while (number.length < size) number = "0" + number;
+    return number;
   }
 
   getTime() {
@@ -25,5 +32,3 @@ export class Tomato extends React.Component {
     );
   }
 }
-
-module.export = Tomato;

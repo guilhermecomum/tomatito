@@ -1,20 +1,15 @@
 import React from 'react'
 
-let Tomato = require('./pomodoro');
+import Tomato from './pomodoro';
 
-export class TomatoBox extends React.Component {
-  getInitialState() {
-    return {
+export default class TomatoBox extends React.Component {
+  constructor() {
+    super();
+    this.state = {
       isPlaying: false,
       time: (14 * 60 * 1000) + (24 * 1000),
       msg: "Time to work!"
-    };
-  }
-
-  zfill(number, size) {
-    number = number.toString();
-    while (number.length < size) number = "0" + number;
-    return number;
+    }
   }
 
   handleStart() {
@@ -76,5 +71,3 @@ export class TomatoBox extends React.Component {
     );
   }
 }
-
-module.exports = TomatoBox;
