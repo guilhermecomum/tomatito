@@ -10,22 +10,24 @@ export default class TomatoBox extends React.Component {
     super();
     this.state = {
       isPlaying: false,
-      time: (14 * 60 * 1000) + (24 * 1000),
+      time: this.getMaxTime(),
       msg: "Are you ready?"
     }
+  }
+
+  getMaxTime() {
+    return (14 * 60 * 1000) + (24 * 1000);
   }
 
   handleStart() {
     this.setState({
       isPlaying: !this.state.isPlaying,
-      msg: "Let's dance!"
     });
-    console.log("Clicked! " + this.state.isPlaying);
   }
 
   handleReset() {
     this.setState({
-      time: (14 * 60 * 1000) + (24 * 1000),
+      time: this.getMaxTime(),
       isPlaying: false,
       msg: "Are you ready?"
     });
@@ -35,24 +37,31 @@ export default class TomatoBox extends React.Component {
     return window.setInterval(() => {
       if (this.state.time > 0) {
         this.setState({
-          time: this.state.time-1000
+          time: this.state.time-1000,
+          msg: "Let's dance!"
         });
+      } else {
+        this.timeOver();
       }
     }, 1000);
   }
 
+  timeOver() {
+    this.setState({
+      isPlaying: false,
+      msg: "Well Done!"
+    });
+  }
+
   componentDidUpdate() {
     if (this.state.isPlaying) {
+      if (this.state.time == 0)
+        this.timeOver();
       if (!this.timer)
         this.timer = this.startTimer();
     } else {
       window.clearInterval(this.timer);
       this.timer = null;
-    }
-    if (this.state.time == 0 ) {
-      this.setState({
-        msg: "Well done!",
-      });
     }
   }
 
