@@ -6,16 +6,21 @@ var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 });
 module.exports = {
   entry: [
-    './app/app.js'
+    './app/app.jsx'
   ],
   output: {
     path: __dirname + '/dist',
     filename: "index_awesome.js"
   },
+  resolve: {
+    modulesDirectories: ['node_modules'],
+    alias: {},
+    extensions: ['', '.jsx', '.js']
+  },
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx$/,
         include: __dirname + '/app',
         loader: "babel-loader"
       },
